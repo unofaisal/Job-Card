@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "JC-.####.-.division.-.MM.-.DD",
+ "creation": "2026-08-29 09:06:20.061283",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "visitor",
+  "visit_date",
+  "job_type",
+  "column_break_bjhm",
+  "status",
+  "start_time",
+  "end_time",
+  "tasks_section",
+  "tasks",
+  "section_break_eair",
+  "schedule_reference",
+  "division",
+  "supervisor_incharge",
+  "supervisor_email",
+  "column_break_aiwn",
+  "sign",
+  "section_break_ogrj",
+  "reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "visitor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Visitor",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "visit_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Visit Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_bjhm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "division",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Division",
+   "options": "Apex Division",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_ogrj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.status == \"Requires Revisit\" || doc.status == \"In Progress\"",
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Revisit Reason"
+  },
+  {
+   "fieldname": "section_break_eair",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "supervisor_incharge",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supervisor Incharge",
+   "options": "Apex Supervisor"
+  },
+  {
+   "fieldname": "sign",
+   "fieldtype": "Signature",
+   "label": "Sign"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nIn Progress\nCompleted\nRequires Revisit",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.is_weekly == 1",
+   "fieldname": "schedule_reference",
+   "fieldtype": "Link",
+   "label": "Schedule Reference",
+   "options": "IT Visit Schedule"
+  },
+  {
+   "fieldname": "column_break_aiwn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "supervisor_incharge.email",
+   "fieldname": "supervisor_email",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Supervisor Email"
+  },
+  {
+   "fieldname": "job_type",
+   "fieldtype": "Select",
+   "label": "Job Type",
+   "options": "Weekly\nAnnual"
+  },
+  {
+   "fieldname": "tasks_section",
+   "fieldtype": "Section Break",
+   "label": "Tasks"
+  },
+  {
+   "fieldname": "tasks",
+   "fieldtype": "Table",
+   "label": "Tasks",
+   "options": "IT Job Card Task"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-14 08:17:05.180572",
+ "modified_by": "Administrator",
+ "module": "Job Card",
+ "name": "IT Job Card",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "IT Team",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

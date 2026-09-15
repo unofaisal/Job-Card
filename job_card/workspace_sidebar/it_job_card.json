@@ -1,0 +1,52 @@
+{
+ "app": "job_card",
+ "creation": "2026-09-15 11:31:23.894865",
+ "docstatus": 0,
+ "doctype": "Workspace Sidebar",
+ "header_icon": "boxes",
+ "idx": 0,
+ "items": [
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "home",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Home",
+   "link_to": "IT JobCard",
+   "link_type": "Workspace",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "boxes",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Job Cards",
+   "link_to": "IT Job Card",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "setting-gear",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Settings",
+   "link_to": "IT Job Card Settings",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-09-15 12:08:51.597658",
+ "modified_by": "Administrator",
+ "name": "IT Job Card",
+ "owner": "Administrator",
+ "standard": 1,
+ "title": "IT Job Card"
+}

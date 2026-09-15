@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "creation": "2026-09-11 12:40:15.053631",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "send_reminder",
+  "send_completion",
+  "notify_supervisor",
+  "it_role",
+  "column_break_jjnk",
+  "send_reminder_ondays_before",
+  "weekly_visit_day",
+  "email_recipients_section",
+  "table_hqgc"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "send_reminder",
+   "fieldtype": "Check",
+   "label": "Send Reminder Mail"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_completion",
+   "fieldtype": "Check",
+   "label": "Send Completion Mail"
+  },
+  {
+   "default": "0",
+   "fieldname": "notify_supervisor",
+   "fieldtype": "Check",
+   "label": "Notify Supervisor"
+  },
+  {
+   "default": "IT Team",
+   "fieldname": "it_role",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "IT Role",
+   "options": "Role"
+  },
+  {
+   "fieldname": "column_break_jjnk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.send_reminder",
+   "fieldname": "send_reminder_ondays_before",
+   "fieldtype": "Int",
+   "label": "Send Reminder On(Days Before)"
+  },
+  {
+   "depends_on": "eval:doc.send_reminder",
+   "fieldname": "weekly_visit_day",
+   "fieldtype": "Select",
+   "label": "Weekly Visit Day"
+  },
+  {
+   "depends_on": "eval:doc.send_reminder || doc.send_completion",
+   "fieldname": "email_recipients_section",
+   "fieldtype": "Section Break",
+   "label": "Email Recipients"
+  },
+  {
+   "fieldname": "table_hqgc",
+   "fieldtype": "Table",
+   "options": "IT Job Card Recipient"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-09-11 12:48:30.227038",
+ "modified_by": "Administrator",
+ "module": "Job Card",
+ "name": "IT Job Card Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

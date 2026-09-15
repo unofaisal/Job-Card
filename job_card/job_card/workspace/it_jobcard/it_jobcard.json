@@ -1,0 +1,40 @@
+{
+ "app": "frappe",
+ "charts": [],
+ "content": "[{\"id\":\"JW3ZPpT-C_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">IT JobCard</span>\",\"col\":12}},{\"id\":\"JTOOz10EhX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Settings\",\"col\":3}}]",
+ "creation": "2026-09-15 12:01:46.124168",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "home",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "IT JobCard",
+ "link_type": "DocType",
+ "links": [],
+ "modified": "2026-09-15 12:02:59.015661",
+ "modified_by": "Administrator",
+ "module": "Job Card",
+ "name": "IT JobCard",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "IT JobCard",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 23.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Settings",
+   "link_to": "IT Job Card Settings",
+   "type": "DocType"
+  }
+ ],
+ "title": "IT JobCard",
+ "type": "Workspace"
+}
