@@ -262,6 +262,12 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+scheduler_events = {
+    "daily": [
+        "job_card.job_card.doctype.it_job_card.it_job_card.send_visit_reminders"
+    ]
+}
+
 fixtures = [
 	{"doctype": "Role", "filters": [["name", "=", "IT Team"]]},
 	{
