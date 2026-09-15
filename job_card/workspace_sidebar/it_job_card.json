@@ -33,6 +33,18 @@
   {
    "child": 0,
    "collapsible": 1,
+   "icon": "alarm-clock-check",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Visit Schedule",
+   "link_to": "IT Visit Schedule",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
    "icon": "setting-gear",
    "indent": 0,
    "keep_closed": 0,
@@ -43,8 +55,9 @@
    "type": "Link"
   }
  ],
- "modified": "2026-09-15 12:08:51.597658",
+ "modified": "2026-09-15 12:46:44.768963",
  "modified_by": "Administrator",
+ "module": "Job Card",
  "name": "IT Job Card",
  "owner": "Administrator",
  "standard": 1,
