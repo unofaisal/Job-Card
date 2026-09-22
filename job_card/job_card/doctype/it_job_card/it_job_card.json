@@ -8,19 +8,22 @@
  "engine": "InnoDB",
  "field_order": [
   "visitor",
-  "visit_date",
   "job_type",
+  "division",
   "column_break_bjhm",
   "status",
+  "visit_date",
   "start_time",
   "end_time",
   "tasks_section",
   "tasks",
   "section_break_eair",
   "schedule_reference",
-  "division",
   "supervisor_incharge",
   "supervisor_email",
+    "reopened_from",
+    "reopened_as",
+    "revisit_connection",
   "column_break_aiwn",
   "sign",
   "section_break_ogrj",
@@ -95,6 +98,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Status",
    "options": "Open\nIn Progress\nCompleted\nRequires Revisit",
@@ -118,11 +122,35 @@
    "hidden": 1,
    "label": "Supervisor Email"
   },
+    {
+     "fieldname": "reopened_from",
+     "fieldtype": "Link",
+      "hidden": 1,
+     "label": "Reopened From",
+     "options": "IT Job Card",
+     "read_only": 1
+    },
+    {
+     "fieldname": "reopened_as",
+     "fieldtype": "Link",
+      "hidden": 1,
+     "label": "Reopened As",
+     "options": "IT Job Card",
+     "read_only": 1
+    },
+  {
+   "fieldname": "revisit_connection",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Revisit Connection",
+   "options": "IT Job Card",
+   "read_only": 1
+  },
   {
    "fieldname": "job_type",
    "fieldtype": "Select",
    "label": "Job Type",
-   "options": "Weekly\nAnnual"
+   "options": "Weekly Visit\nAnnual Maintenance Visit\nUnplanned Visit"
   },
   {
    "fieldname": "tasks_section",
@@ -139,7 +167,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-14 08:17:05.180572",
+ "modified": "2026-09-22 08:48:41.262078",
  "modified_by": "Administrator",
  "module": "Job Card",
  "name": "IT Job Card",

@@ -299,3 +299,67 @@ def get_division_supervisors(
 		{"division": division, "txt": f"%{txt or ''}%", "start": start, "page_len": page_len},
 	)
 	return rows  # already tuples: (name, full_name)
+
+
+@frappe.whitelist()
+def reopen_it_job_card(name):
+	original = frappe.get_doc("IT Job Card", name)
+	original.check_permission("write")
+
+	if original.status != "Requires Revisit":
+		frappe.throw("Only a job card marked Requires Revisit can be reopened.")
+	if original.reopened_as:
+		frappe.throw(f"This job card was already reopened as {original.reopened_as}.")
+
+	new_card = frappe.get_doc(
+		{
+			"doctype": "IT Job Card",
+			"visitor": original.visitor,
+			"job_type": original.job_type,
+			"division": original.division,
+			"status": "Open",
+			"schedule_reference": original.schedule_reference,
+			"supervisor_incharge": original.supervisor_incharge,
+			"reopened_from": original.name,
+			"revisit_connection": original.name,
+		}
+	)
+	new_card.insert()
+
+	original.db_set("reopened_as", new_card.name)
+	original.db_set("revisit_connection", new_card.name)
+	return new_card.name
+
+
+@frappe.whitelist()
+def get_it_job_card_workflow_actions(doc):
+	from frappe.model.workflow import (
+		get_workflow,
+		get_transitions,
+		is_transition_condition_satisfied,
+	)
+
+	doc = frappe.get_doc(frappe.parse_json(doc))
+	workflow = get_workflow(doc.doctype)
+
+	if not doc.is_new():
+		return get_transitions(doc, workflow)
+
+	doc.check_permission("create")
+	state_field = workflow.workflow_state_field
+	current_state = doc.get(state_field)
+	if not current_state:
+		current_state = next(
+			(state.state for state in workflow.states if state.doc_status == doc.docstatus),
+			None,
+		)
+		doc.set(state_field, current_state)
+
+	roles = frappe.get_roles()
+	return [
+		transition.as_dict()
+		for transition in workflow.transitions
+		if transition.state == current_state
+		and transition.allowed in roles
+		and is_transition_condition_satisfied(transition, doc)
+	]

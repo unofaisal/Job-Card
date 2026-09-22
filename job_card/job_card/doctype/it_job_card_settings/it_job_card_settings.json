@@ -14,7 +14,7 @@
   "send_reminder_ondays_before",
   "weekly_visit_day",
   "email_recipients_section",
-  "table_hqgc"
+  "recipients"
  ],
  "fields": [
   {
@@ -57,7 +57,8 @@
    "depends_on": "eval:doc.send_reminder",
    "fieldname": "weekly_visit_day",
    "fieldtype": "Select",
-   "label": "Weekly Visit Day"
+   "label": "Weekly Visit Day",
+   "options": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday"
   },
   {
    "depends_on": "eval:doc.send_reminder || doc.send_completion",
@@ -66,7 +67,7 @@
    "label": "Email Recipients"
   },
   {
-   "fieldname": "table_hqgc",
+   "fieldname": "recipients",
    "fieldtype": "Table",
    "options": "IT Job Card Recipient"
   }
@@ -75,7 +76,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-09-11 12:48:30.227038",
+ "modified": "2026-09-22 08:21:26.950307",
  "modified_by": "Administrator",
  "module": "Job Card",
  "name": "IT Job Card Settings",
