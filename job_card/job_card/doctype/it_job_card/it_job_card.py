@@ -153,8 +153,8 @@ def get_configured_recipients(settings, notify_field):
 	if set. notify_field is "notify_completion" or "notify_reminder"."""
 	emails = {row.recipient_email for row in settings.recipients if row.get(notify_field) and row.recipient_email}
 
-	if settings.it_role:
-		emails.update(get_role_emails(settings.it_role))
+	# if settings.it_role:
+	# 	emails.update(get_role_emails(settings.it_role))
 
 	return sorted(emails)
 
