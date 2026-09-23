@@ -116,11 +116,9 @@ class ITJobCard(Document):
 		if self.tasks:
 			task_rows = ""
 			for d in self.tasks:
-				user_display = (
-					frappe.db.get_value("User", d.user, "full_name") or d.user
-				) if d.user else "-"
+				employee = d.get("employee")
 				task_rows += f"""
-				<tr><td>{e_multiline(d.task)}</td><td style="width:200px;">{e(user_display)}</td></tr>"""
+				<tr><td>{e_multiline(d.get("task"))}</td><td style="width:200px;">{e(employee)}</td></tr>"""
 
 			tasks_html = f"""
 			<p><b>Tasks Completed ({len(self.tasks)})</b></p>
