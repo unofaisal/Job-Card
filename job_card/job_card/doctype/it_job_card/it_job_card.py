@@ -28,14 +28,14 @@ class ITJobCard(Document):
 			if not self.visit_date:
 				self.visit_date = nowdate()
 			self.start_time = nowtime()
-		if self.status == "Completed" and not self.end_time:
+
+		if self.status in ("Completed", "Requires Revisit") and not self.end_time:
 			self.end_time = nowtime()
-			self._just_completed = True
+			self._just_finished = True
 
 		before = self.get_doc_before_save()
 		if before and before.status == "Completed" and "System Manager" not in frappe.get_roles():
 			frappe.throw("This job card is completed and can no longer be edited.")
-
 	def on_update(self):
 		if getattr(self, "_just_completed", False):
 			self.send_completion_email()
@@ -65,10 +65,15 @@ class ITJobCard(Document):
 			# to them directly rather than silently dropping the mail.
 			to_emails, cc = cc, []
 
+		if self.status == "Requires Revisit":
+			subject = f"IT Job Card Requires Revisit — {self.division or 'Visit'} ({self.name})"
+		else:
+			subject = f"IT Job Card Completed — {self.division or 'Visit'} ({self.name})"
+
 		kwargs = dict(
 			recipients=to_emails,
 			cc=cc,
-			subject=f"IT Job Card Completed — {self.division or 'Visit'} ({self.name})",
+			subject=subject,
 			message=self.get_completion_email_html(),
 			with_container=True,  # branded card: logo/name, styled container, standard footer
 			reference_doctype=self.doctype,
@@ -112,6 +117,8 @@ class ITJobCard(Document):
 
 		card_url = f"{frappe.utils.get_url()}/job-card/{self.name}"
 
+		is_revisit = self.status == "Requires Revisit"
+
 		tasks_html = ""
 		if self.tasks:
 			task_rows = ""
@@ -120,17 +127,31 @@ class ITJobCard(Document):
 				task_rows += f"""
 				<tr><td>{e_multiline(d.get("task"))}</td><td style="width:200px;">{e(employee)}</td></tr>"""
 
+			tasks_label = "Tasks" if is_revisit else f"Tasks Completed ({len(self.tasks)})"
 			tasks_html = f"""
-			<p><b>Tasks Completed ({len(self.tasks)})</b></p>
+			<p><b>{tasks_label}</b></p>
 			<table class="table table-bordered">
 				<tr><td><b>Task</b></td><td style="width:200px;"><b>For</b></td></tr>
 				{task_rows}
 			</table>"""
 
+		reason_html = ""
+		if is_revisit and self.reason:
+			reason_html = f"""
+			<p><b>Revisit Reason</b></p>
+			<p>{e_multiline(self.reason)}</p>"""
+
+		if is_revisit:
+			title = "Job Card Requires Revisit"
+			intro = f"The IT visit to <b>{e(self.division)}</b> on <b>{visit_date}</b> has been marked as requiring a revisit."
+		else:
+			title = "Job Card Completed"
+			intro = f"The IT visit to <b>{e(self.division)}</b> on <b>{visit_date}</b> has been marked completed"
+
 		return f"""
-		<h1 class="email-title" style="font-size:20px;font-weight:600;line-height:1.4;color:#171717;margin:0 0 16px;">Job Card Completed</h1>
+		<h1 class="email-title" style="font-size:20px;font-weight:600;line-height:1.4;color:#171717;margin:0 0 16px;">{title}</h1>
 		<div class="email-body">
-			<p>The IT visit to <b>{e(self.division)}</b> on <b>{visit_date}</b> has been marked completed and signed off.</p>
+			<p>{intro}</p>
 
 			<table class="table table-bordered">
 				<tr><td style="width:130px;"><b>Division</b></td><td>{e(self.division)}</td></tr>
@@ -140,6 +161,7 @@ class ITJobCard(Document):
 				<tr><td><b>End Time</b></td><td>{fmt_time(self.end_time)}</td></tr>
 			</table>
 			{tasks_html}
+			{reason_html}
 			<div class="email-action">
 				<a class="email-btn email-btn-primary btn btn-primary" href="{card_url}">View Job Card</a>
 			</div>
