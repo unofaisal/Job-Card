@@ -3,7 +3,7 @@
  "allow_bulk_edit": 1,
  "allow_rename": 1,
  "autoname": "JC-.####.-.division.-.MM.-.DD",
- "creation": "2026-08-29 09:06:20.061283",
+ "creation": "2026-09-22 09:40:19.452992",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -21,9 +21,9 @@
   "schedule_reference",
   "supervisor_incharge",
   "supervisor_email",
-    "reopened_from",
-    "reopened_as",
-    "revisit_connection",
+  "reopened_from",
+  "reopened_as",
+  "revisit_connection",
   "column_break_aiwn",
   "sign",
   "section_break_ogrj",
@@ -93,7 +93,8 @@
   {
    "fieldname": "sign",
    "fieldtype": "Signature",
-   "label": "Sign"
+   "label": "Sign",
+   "read_only_depends_on": "eval:doc.sign && doc.supervisor_incharge"
   },
   {
    "fieldname": "status",
@@ -122,22 +123,22 @@
    "hidden": 1,
    "label": "Supervisor Email"
   },
-    {
-     "fieldname": "reopened_from",
-     "fieldtype": "Link",
-      "hidden": 1,
-     "label": "Reopened From",
-     "options": "IT Job Card",
-     "read_only": 1
-    },
-    {
-     "fieldname": "reopened_as",
-     "fieldtype": "Link",
-      "hidden": 1,
-     "label": "Reopened As",
-     "options": "IT Job Card",
-     "read_only": 1
-    },
+  {
+   "fieldname": "reopened_from",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Reopened From",
+   "options": "IT Job Card",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reopened_as",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Reopened As",
+   "options": "IT Job Card",
+   "read_only": 1
+  },
   {
    "fieldname": "revisit_connection",
    "fieldtype": "Link",
@@ -167,7 +168,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-22 08:48:41.262078",
+ "modified": "2026-09-30 12:16:16.792732",
  "modified_by": "Administrator",
  "module": "Job Card",
  "name": "IT Job Card",
