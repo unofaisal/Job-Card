@@ -23,15 +23,15 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2026-08-31 15:28:51.499695",
-  "name": "Resolve",
-  "workflow_action_name": "Resolve"
+  "modified": "2026-08-31 15:28:51.500933",
+  "name": "Reopen",
+  "workflow_action_name": "Reopen"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2026-08-31 15:28:51.500933",
-  "name": "Reopen",
-  "workflow_action_name": "Reopen"
+  "modified": "2026-08-31 15:28:51.499695",
+  "name": "Resolve",
+  "workflow_action_name": "Resolve"
  }
 ]
