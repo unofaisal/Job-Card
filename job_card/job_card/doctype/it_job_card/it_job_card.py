@@ -37,7 +37,7 @@ class ITJobCard(Document):
 		if before and before.status == "Completed" and "System Manager" not in frappe.get_roles():
 			frappe.throw("This job card is completed and can no longer be edited.")
 	def on_update(self):
-		if getattr(self, "_just_completed", False):
+		if getattr(self, "_just_finished", False):
 			self.send_completion_email()
 
 	def has_webform_permission(self):
