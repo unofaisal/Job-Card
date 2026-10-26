@@ -115,7 +115,7 @@ class ITJobCard(Document):
 		visit_date = format_date(self.visit_date) if self.visit_date else "-"
 		visitor_name = frappe.db.get_value("User", self.visitor, "full_name") or self.visitor or "-"
 
-		card_url = f"{frappe.utils.get_url()}/job-card/{self.name}"
+		card_url = f"{frappe.utils.get_url()}/desk/it-job-card/{self.name}"
 
 		is_revisit = self.status == "Requires Revisit"
 
@@ -155,12 +155,14 @@ class ITJobCard(Document):
 
 			<table class="table table-bordered">
 				<tr><td style="width:130px;"><b>Division</b></td><td>{e(self.division)}</td></tr>
-				<tr><td><b>Visit Date</b></td><td>{visit_date}</td></tr>
 				<tr><td><b>Visitor</b></td><td>{e(visitor_name)}</td></tr>
+				<tr><td><b>Visit Date</b></td><td>{visit_date}</td></tr>
 				<tr><td><b>Start Time</b></td><td>{fmt_time(self.start_time)}</td></tr>
 				<tr><td><b>End Time</b></td><td>{fmt_time(self.end_time)}</td></tr>
 			</table>
+			<br>
 			{tasks_html}
+			<br>
 			{reason_html}
 			<div class="email-action">
 				<a class="email-btn email-btn-primary btn btn-primary" href="{card_url}">View Job Card</a>
